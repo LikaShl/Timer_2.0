@@ -32,7 +32,7 @@ function App() {
             const newMinValue = JSON.parse(minValueAsString)
             setMinValue(newMinValue)
         }
-    } ,[])
+    } , [] )
 
     useEffect( ()=> {
         const maxValueAsString = localStorage.getItem('max value')
@@ -40,7 +40,7 @@ function App() {
             const newMaxValue = JSON.parse(maxValueAsString)
             setMaxValue(newMaxValue)
         }
-    } ,[])
+    } ,  [] )
 
     const startCount = (count: number, maxValue: number) => {
         if (count < maxValue) {
@@ -50,7 +50,6 @@ function App() {
 
     const resetTimer = () => {
         setCount(minValue)
-
     }
 
     const onSetMode = () => {
@@ -65,12 +64,15 @@ function App() {
         setCount(minValue)
         setMaxValue(maxValue)
     }
+
     const changeMinValue = (newMinValue: number, maxValue: number) => {
         if (newMinValue < 0 || newMinValue >= maxValue) {
             setMinValueError(true)
+
             setDisabled(true)
         } else {
-            setMinValueError(false)
+            setMinValueError(false);
+            setMaxValueError(false);
             setDisabled(false)
         }
         setMinValue(newMinValue)
@@ -81,6 +83,7 @@ function App() {
             setDisabled(true)
         } else {
             setMaxValueError(false)
+            setMinValueError(false)
             setDisabled(false)
         }
         setMaxValue(newMaxValue)
